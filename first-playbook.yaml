@@ -1,0 +1,14 @@
+--- #Three hyphens indicate that this is a yaml file
+- name: Install and Start nginx #"-" indicates start of playbook then name playbook by purpose and use
+    hosts: all #Provide list of host/servers where playbook will run
+    become: true #Select user for ansible to execute playbook (root or other)
+
+  tasks:
+   - name: Intall nginx #task always start with "-" and describe task using "name:"
+     apt: #provide command (use ansible apt or shell command | "shell: apt install nginx" |apt is generic ansible option)
+       name: nginx #provide name of what you want to install
+       state: present #"present" means you want to install nginx
+   - name: Start nginx #Begin second task by describing purpose
+     service:  #use ansible generic "service" module or shell command "shell: systemctl start nginx"
+       name: nginx #what is the name of service
+       state: started #"started" will start the service nginx
